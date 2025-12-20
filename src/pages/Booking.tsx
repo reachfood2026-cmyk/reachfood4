@@ -393,7 +393,7 @@ const Booking = () => {
                 <div>
                   <label className="block text-slate-700 font-medium mb-2">{isArabic ? 'تعليمات خاصة' : 'Special Instructions'}</label>
                   <textarea
-                    className="w-full p-3 border border-slate-300 rounded-lg focus:border-teal-500 focus:outline-none"
+                    className="w-full p-3 border border-slate-300 rounded-lg focus:border-teal-500 focus:outline-none bg-white text-slate-900"
                     rows={3}
                     placeholder={isArabic ? 'أي احتياجات غذائية خاصة أو تعليمات تسليم...' : 'Any special dietary needs or delivery instructions...'}
                   />
@@ -427,7 +427,7 @@ const Booking = () => {
                     <input
                       type="text"
                       required
-                      className="w-full p-3 border border-slate-300 rounded-lg focus:border-teal-500 focus:outline-none"
+                      className="w-full p-3 border border-slate-300 rounded-lg focus:border-teal-500 focus:outline-none bg-white text-slate-900"
                       placeholder={isArabic ? 'الاسم الكامل' : 'Your full name'}
                     />
                   </div>
@@ -436,7 +436,7 @@ const Booking = () => {
                     <input
                       type="email"
                       required
-                      className="w-full p-3 border border-slate-300 rounded-lg focus:border-teal-500 focus:outline-none"
+                      className="w-full p-3 border border-slate-300 rounded-lg focus:border-teal-500 focus:outline-none bg-white text-slate-900"
                       placeholder={isArabic ? 'your@email.com' : 'your@email.com'}
                     />
                   </div>
@@ -445,7 +445,7 @@ const Booking = () => {
                     <input
                       type="tel"
                       required
-                      className="w-full p-3 border border-slate-300 rounded-lg focus:border-teal-500 focus:outline-none"
+                      className="w-full p-3 border border-slate-300 rounded-lg focus:border-teal-500 focus:outline-none bg-white text-slate-900"
                       placeholder={isArabic ? '+962 7X XXX XXXX' : '+1 (555) 123-4567'}
                     />
                   </div>
@@ -454,7 +454,7 @@ const Booking = () => {
                     <input
                       type="text"
                       required
-                      className="w-full p-3 border border-slate-300 rounded-lg focus:border-teal-500 focus:outline-none"
+                      className="w-full p-3 border border-slate-300 rounded-lg focus:border-teal-500 focus:outline-none bg-white text-slate-900"
                       placeholder={isArabic ? 'عنوان الشارع' : 'Street address'}
                     />
                   </div>
