@@ -65,6 +65,14 @@ const About = () => {
       expertise: isArabic ? 'التغذية الطارئة، إدارة الكوارث، تقييم سوء التغذية' : 'Emergency Nutrition, Disaster Management, Malnutrition Assessment',
       email: 'mahmoudalkhateib@hotmail.com',
       image: '/images/Mahmoud Alkhatib.jpg'
+    },
+    {
+      name: 'Enes Hurmuzlu',
+      role: isArabic ? 'مطور ومستشار تقني' : 'Developer & Tech Advisor',
+      background: isArabic ? 'عالم رياضيات ومبرمج من العراق/تركيا. لديه خبرة في تطوير تطبيقات الموبايل، استشارات الذكاء الاصطناعي، وتعليم الرياضيات. عمل مع شركات ناشئة في أمريكا وفنلندا والأردن، وطور تطبيقات iOS وAndroid، ونشر أكثر من 60 محاضرة رياضيات عبر الإنترنت. ممثل فريق العراق في الأولمبياد الدولي للرياضيات 2025 وخريج برنامج Yale Young Global Scholars.' : 'Mathematician and programmer from Iraq/Türkiye with experience in full-stack mobile development, AI advising, and mathematics education. Worked with startups in the US, Finland, and Jordan, developed iOS and Android applications, and published 60+ online math lectures. IMO 2025 Iraq Team Representative and Yale Young Global Scholars alumnus.',
+      expertise: isArabic ? 'تطوير تطبيقات الموبايل، الذكاء الاصطناعي، تعليم الرياضيات' : 'Full-Stack Mobile Development, AI Advising, Mathematics Education',
+      email: 'enesalhurmuzi@gmail.com',
+      image: '/images/anes.jpg'
     }
   ]
 
@@ -285,7 +293,7 @@ const About = () => {
                       )}
                       {member.phone && (
                         <p className="text-xs text-slate-500">
-                          <span className="font-medium">{isArabic ? 'هاتف:' : 'Tel:'}</span> {member.phone}
+                          <span className="font-medium">{isArabic ? 'هاتف:' : 'Tel:'}</span> <span dir="ltr">{member.phone}</span>
                         </p>
                       )}
                     </div>
