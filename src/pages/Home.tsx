@@ -132,8 +132,7 @@ const Home = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="rounded-xl p-6 shadow-lg hover:shadow-xl group hover:scale-105 transition-all duration-300 border-2 border-teal-400 hover:border-teal-300"
-                  style={{ backgroundColor: '#2d6f7b' }}
+                  className="rounded-xl p-6 shadow-lg hover:shadow-xl group hover:scale-105 transition-all duration-300 border-2 border-teal-400 hover:border-teal-300 bg-teal-700"
                   whileHover={{ 
                     scale: 1.05,
                     y: -10,
@@ -536,8 +535,9 @@ const Home = () => {
               {tr('joinMovement', isArabic)}
             </h2>
             <p className="text-xl text-teal-100 mb-8 max-w-3xl mx-auto">
-              Whether you're looking to fuel your life's journey or invest in a sustainable future, 
-              there's a place for you at ReachFood. Be part of the revolution that's reimagining nourishment.
+              {isArabic
+                ? 'سواء كنت تبحث عن تغذية رحلة حياتك أو الاستثمار في مستقبل مستدام، هناك مكان لك في ReachFood. كن جزءاً من الثورة التي تعيد تصور التغذية.'
+                : "Whether you're looking to fuel your life's journey or invest in a sustainable future, there's a place for you at ReachFood. Be part of the revolution that's reimagining nourishment."}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.div

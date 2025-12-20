@@ -35,42 +35,34 @@ const About = () => {
   const teamMembers = [
     {
       name: 'Amera Otoum',
-      role: 'CEO & Packaging CPO',
-      background: 'Researcher in Economics and Environmental Psychology. Expert working in emergencies and empowering vulnerable communities.',
-      expertise: 'MSc: Economic and Environmental Resources, BS: Agricultural Engineering',
+      role: isArabic ? 'الرئيس التنفيذي ومسؤول التغليف' : 'CEO & Packaging CPO',
+      background: isArabic ? 'باحثة في الاقتصاد وعلم النفس البيئي. خبيرة في العمل في حالات الطوارئ وتمكين المجتمعات الضعيفة.' : 'Researcher in Economics and Environmental Psychology. Expert working in emergencies and empowering vulnerable communities.',
+      expertise: isArabic ? 'ماجستير: الموارد الاقتصادية والبيئية، بكالوريوس: الهندسة الزراعية' : 'MSc: Economic and Environmental Resources, BS: Agricultural Engineering',
       email: 'Ameraaloto@gmail.com',
       phone: '+962 792977610',
       image: '/images/amera.jpg'
     },
     {
-      name: 'Dr.Aljawharah Alsubaie',
-      role: 'Food Advisor',
-      background: 'Researcher in Therapeutic Effectiveness. Filed Patent in 2014, Patent in innovative candy for dental care. Hospital training in NHS hospitals.',
-      expertise: 'Doctor of Pharmacy (professional doctorate)',
+      name: isArabic ? 'د. الجوهرة السبيعي' : 'Dr.Aljawharah Alsubaie',
+      role: isArabic ? 'مستشار غذائي' : 'Food Advisor',
+      background: isArabic ? 'باحثة في الفعالية العلاجية. قدمت براءة اختراع عام 2014 لحلوى مبتكرة للعناية بالأسنان. تدريب في مستشفيات NHS.' : 'Researcher in Therapeutic Effectiveness. Filed Patent in 2014, Patent in innovative candy for dental care. Hospital training in NHS hospitals.',
+      expertise: isArabic ? 'دكتوراه في الصيدلة (دكتوراه مهنية)' : 'Doctor of Pharmacy (professional doctorate)',
       email: 'jalkhuzem@gmail.com',
       image: '/images/Aljawharah Alsubaie.jpg'
     },
     {
-      name: 'Wadia Safia',
-      role: 'Finance Advisor',
-      background: 'Expert in Finance / INGOs & Private sector. Certified Finance Manager.',
-      expertise: 'BSc: Accounting',
-      email: 'wadiasafieh@yahoo.com',
-      image: '/images/Wadia Safia.jpg'
-    },
-    {
-      name: 'Dr. Ali Ali Redha',
-      role: 'Food R&D Advisor',
-      background: 'Researcher in Food Bioactives',
-      expertise: 'PhD: Food, Nutrition & Health, MSc: Analytical Chemistry, BSc: Chemistry',
+      name: isArabic ? 'د. علي علي رضا' : 'Dr. Ali Ali Redha',
+      role: isArabic ? 'مستشار البحث والتطوير الغذائي' : 'Food R&D Advisor',
+      background: isArabic ? 'باحث في المركبات الغذائية النشطة بيولوجياً' : 'Researcher in Food Bioactives',
+      expertise: isArabic ? 'دكتوراه: الغذاء والتغذية والصحة، ماجستير: الكيمياء التحليلية، بكالوريوس: الكيمياء' : 'PhD: Food, Nutrition & Health, MSc: Analytical Chemistry, BSc: Chemistry',
       email: 'ali96chemx@gmail.com',
       image: '/images/Ali Ali Redha.jpg'
     },
     {
-      name: 'Dr. Mahmoud Alkhateib',
-      role: 'Food For Emergency Advisor',
-      background: 'Served as QRC Consultant Dietitian in Somalia (2011) and led nutrition efforts in multiple disaster management camps (2012–2018). Participated in key regional meetings and courses in Amman and Doha, including leading the Yemen malnutrition assessment mission (2012) and delivering expert presentations (2016–2018).',
-      expertise: 'Emergency Nutrition, Disaster Management, Malnutrition Assessment',
+      name: isArabic ? 'د. محمود الخطيب' : 'Dr. Mahmoud Alkhateib',
+      role: isArabic ? 'مستشار التغذية في حالات الطوارئ' : 'Food For Emergency Advisor',
+      background: isArabic ? 'عمل كمستشار تغذية في الهلال الأحمر القطري في الصومال (2011) وقاد جهود التغذية في مخيمات إدارة الكوارث (2012-2018). شارك في اجتماعات ودورات إقليمية في عمان والدوحة، بما في ذلك قيادة مهمة تقييم سوء التغذية في اليمن (2012).' : 'Served as QRC Consultant Dietitian in Somalia (2011) and led nutrition efforts in multiple disaster management camps (2012–2018). Participated in key regional meetings and courses in Amman and Doha, including leading the Yemen malnutrition assessment mission (2012) and delivering expert presentations (2016–2018).',
+      expertise: isArabic ? 'التغذية الطارئة، إدارة الكوارث، تقييم سوء التغذية' : 'Emergency Nutrition, Disaster Management, Malnutrition Assessment',
       email: 'mahmoudalkhateib@hotmail.com',
       image: '/images/Mahmoud Alkhatib.jpg'
     }
@@ -79,51 +71,51 @@ const About = () => {
   const milestones = [
     {
       year: '2023',
-      title: 'Research Collaboration',
-      description: 'Launched collaboration with Women\'s Research Group and ReashSci'
+      title: isArabic ? 'تعاون بحثي' : 'Research Collaboration',
+      description: isArabic ? 'أطلقنا تعاوناً مع مجموعة أبحاث المرأة و ReashSci' : 'Launched collaboration with Women\'s Research Group and ReashSci'
     },
     {
       year: '2024',
-      title: 'Award Recognition',
-      description: 'Won Best Research Poster Award (Food Security & Health Recovery) with ReashSci'
+      title: isArabic ? 'تقدير وجوائز' : 'Award Recognition',
+      description: isArabic ? 'فزنا بجائزة أفضل ملصق بحثي (الأمن الغذائي والتعافي الصحي) مع ReashSci' : 'Won Best Research Poster Award (Food Security & Health Recovery) with ReashSci'
     },
     {
       year: '2025',
-      title: 'Innovation Development',
-      description: 'Developed eco-friendly packaging and 12+ health recovery food recipes'
+      title: isArabic ? 'تطوير الابتكار' : 'Innovation Development',
+      description: isArabic ? 'طورنا تغليفاً صديقاً للبيئة وأكثر من 12 وصفة للتعافي الصحي' : 'Developed eco-friendly packaging and 12+ health recovery food recipes'
     },
     {
       year: '2025',
-      title: 'Research Publication',
-      description: 'Published research on unique recipes & sustainable agriculture for harsh environments'
+      title: isArabic ? 'نشر بحثي' : 'Research Publication',
+      description: isArabic ? 'نشرنا بحثاً عن وصفات فريدة والزراعة المستدامة للبيئات القاسية' : 'Published research on unique recipes & sustainable agriculture for harsh environments'
     },
     {
       year: '2026–2027',
-      title: 'Global Events',
-      description: 'Served at major global events including Hajj, Umrah, and the World Cup, providing sustainable and culturally authentic meals'
+      title: isArabic ? 'فعاليات عالمية' : 'Global Events',
+      description: isArabic ? 'خدمنا في فعاليات عالمية كبرى شملت الحج والعمرة وكأس العالم، مقدمين وجبات مستدامة وأصيلة ثقافياً' : 'Served at major global events including Hajj, Umrah, and the World Cup, providing sustainable and culturally authentic meals'
     }
   ]
 
   const stats = [
     {
       number: '5',
-      unit: 'Minutes',
-      description: 'Heating time from ambient to 65°C'
+      unit: isArabic ? 'دقائق' : 'Minutes',
+      description: isArabic ? 'وقت التسخين من درجة الغرفة إلى 65° م' : 'Heating time from ambient to 65°C'
     },
     {
       number: '100%',
-      unit: 'Plantable and Biodegradable',
-      description: 'Packaging transforms into wildflowers and using as hypotonic Agriculture system'
+      unit: isArabic ? 'قابل للزراعة والتحلل' : 'Plantable and Biodegradable',
+      description: isArabic ? 'التغليف يتحول إلى زهور برية ويستخدم كنظام زراعة مائية' : 'Packaging transforms into wildflowers and using as hypotonic Agriculture system'
     },
     {
       number: '15+',
-      unit: 'Countries',
-      description: 'Emergency relief deployments'
+      unit: isArabic ? 'دولة' : 'Countries',
+      description: isArabic ? 'عمليات الإغاثة الطارئة' : 'Emergency relief deployments'
     },
     {
       number: '+1M',
-      unit: 'Meals',
-      description: 'Serving professionals and families with busy lifestyles'
+      unit: isArabic ? 'وجبة' : 'Meals',
+      description: isArabic ? 'خدمة المهنيين والعائلات ذات أنماط الحياة المزدحمة' : 'Serving professionals and families with busy lifestyles'
     }
   ]
 

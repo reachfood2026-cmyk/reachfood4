@@ -27,7 +27,7 @@ const Footer = () => {
                   />
                 </div>
                 <div className="text-2xl font-serif font-bold">
-                  <span className="text-gray-800"><span className="text-[#0080A3]">R</span><span className="text-orange-400">E</span><span className="text-[#0080A3]">A</span><span className="text-[#0080A3]">C</span><span className="text-[#0080A3]">H</span><span className="text-[#0080A3]">F</span><span className="text-orange-400">OO</span><span className="text-[#0080A3]">D</span></span>
+                  <span className="text-gray-800"><span className="text-teal-600">R</span><span className="text-orange-400">E</span><span className="text-teal-600">A</span><span className="text-teal-600">C</span><span className="text-teal-600">H</span><span className="text-teal-600">F</span><span className="text-orange-400">OO</span><span className="text-teal-600">D</span></span>
                 </div>
               </div>
               <p className="text-gray-600 mb-4 max-w-md">
@@ -87,7 +87,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <Link to={isArabic ? '/ar/services' : '/services'} className="text-gray-600 hover:text-teal-500 transition-colors">
-                  {isArabic ? 'وجبات جاهزة' : 'Meal Kits'}
+                  {isArabic ? 'أطقم الوجبات' : 'Meal Kits'}
                 </Link>
               </li>
               <li>
@@ -190,7 +190,7 @@ const Footer = () => {
         >
           <div className="flex flex-col items-center md:items-start">
             <p className="text-gray-500 text-sm">
-              © 2024 ReachFood. Revolutionizing nourishment worldwide.
+              {isArabic ? '© 2024 ReachFood. نحدث ثورة في التغذية حول العالم.' : '© 2024 ReachFood. Revolutionizing nourishment worldwide.'}
             </p>
             <p className="text-gray-400 text-xs mt-1">
               {isArabic ? 'مطور بواسطة' : 'Developed by'} <a href="https://www.sitedz.store" target="_blank" rel="noopener noreferrer" className="text-teal-500 hover:text-teal-600 transition-colors">www.sitedz.store</a>

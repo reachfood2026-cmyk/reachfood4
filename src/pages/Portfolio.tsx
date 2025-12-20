@@ -16,38 +16,38 @@ const Portfolio = () => {
   const partnershipBenefits = [
     {
       icon: Globe,
-      title: 'Regional Expansion',
-      description: 'Direct presence in local markets plus strong online reach.',
+      title: isArabic ? 'التوسع الإقليمي' : 'Regional Expansion',
+      description: isArabic ? 'حضور مباشر في الأسواق المحلية مع وصول قوي عبر الإنترنت.' : 'Direct presence in local markets plus strong online reach.',
       color: 'text-teal-400'
     },
     {
       icon: Award,
-      title: 'Local Flavors, Global Standards',
-      description: 'We design products around local crops and traditional tastes, while ensuring international quality.',
+      title: isArabic ? 'نكهات محلية، معايير عالمية' : 'Local Flavors, Global Standards',
+      description: isArabic ? 'نصمم منتجاتنا حول المحاصيل المحلية والأذواق التقليدية، مع ضمان الجودة العالمية.' : 'We design products around local crops and traditional tastes, while ensuring international quality.',
       color: 'text-blue-400'
     },
     {
       icon: Handshake,
-      title: 'Shared Values',
-      description: 'We are driven by impact, sustainability, and long term collaboration.',
+      title: isArabic ? 'قيم مشتركة' : 'Shared Values',
+      description: isArabic ? 'نحن مدفوعون بالأثر والاستدامة والتعاون طويل الأمد.' : 'We are driven by impact, sustainability, and long term collaboration.',
       color: 'text-green-400'
     }
   ]
 
   const competitiveAdvantages = [
     {
-      title: 'Market Presence',
-      description: 'Unlike most competitors who focus only on online channels, we combine on-the-ground market presence with strong online visibility and our patented eco-friendly packaging makes us stand out.',
+      title: isArabic ? 'الحضور في السوق' : 'Market Presence',
+      description: isArabic ? 'على عكس معظم المنافسين الذين يركزون فقط على القنوات الإلكترونية، نجمع بين الحضور الميداني في السوق والوصول القوي عبر الإنترنت، وتغليفنا الصديق للبيئة الحاصل على براءة اختراع يميزنا.' : 'Unlike most competitors who focus only on online channels, we combine on-the-ground market presence with strong online visibility and our patented eco-friendly packaging makes us stand out.',
       icon: Building
     },
     {
-      title: 'Local Focus',
-      description: 'While others overlook local preferences, we embrace local crops and traditional flavors.',
+      title: isArabic ? 'التركيز المحلي' : 'Local Focus',
+      description: isArabic ? 'بينما يتجاهل الآخرون التفضيلات المحلية، نحن نتبنى المحاصيل المحلية والنكهات التقليدية.' : 'While others overlook local preferences, we embrace local crops and traditional flavors.',
       icon: Leaf
     },
     {
-      title: 'Affordable Access',
-      description: 'While their prices remain high, we keep our products affordable and accessible.',
+      title: isArabic ? 'الوصول بأسعار معقولة' : 'Affordable Access',
+      description: isArabic ? 'بينما تبقى أسعارهم مرتفعة، نحافظ على أسعار منتجاتنا معقولة وسهلة الوصول.' : 'While their prices remain high, we keep our products affordable and accessible.',
       icon: DollarSign
     }
   ]
@@ -55,7 +55,7 @@ const Portfolio = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-orange-500 to-orange-600">
+      <section className="py-20 bg-gradient-to-br from-slate-900 via-teal-900 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -127,7 +127,7 @@ const Portfolio = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-orange-400 hover:to-orange-500 transition-all duration-200 shadow-lg hover:shadow-xl"
+              className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-teal-400 hover:to-teal-500 transition-all duration-200 shadow-lg hover:shadow-xl"
             >
               {isArabic ? 'انضم كشريك' : 'Join as a Partner'}
             </motion.button>
@@ -168,7 +168,7 @@ const Portfolio = () => {
                   className="flex items-center gap-8 bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center">
+                    <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center">
                       <IconComponent className="w-8 h-8 text-white" />
                     </div>
                   </div>
@@ -203,7 +203,7 @@ const Portfolio = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-orange-400 hover:to-orange-500 transition-all duration-200 shadow-lg hover:shadow-xl"
+              className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-teal-400 hover:to-teal-500 transition-all duration-200 shadow-lg hover:shadow-xl"
             >
               {isArabic ? 'انضم كشريك' : 'Join as a Partner'}
             </motion.button>

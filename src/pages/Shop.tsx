@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useLocation } from 'react-router-dom'
+import { Flame, Sprout, Globe } from 'lucide-react'
 
 const Shop = () => {
   const location = useLocation()
@@ -332,29 +333,35 @@ const Shop = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              Why Choose R<span className="text-orange-400">E</span>ACHF<span className="text-orange-400">OO</span>D?
+              {isArabic ? 'لماذا تختار REACHFOOD؟' : (<>Why Choose R<span className="text-orange-400">E</span>ACHF<span className="text-orange-400">OO</span>D?</>)}
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Revolutionary technology meets authentic flavors
+              {isArabic ? 'تقنية ثورية تلتقي بنكهات أصيلة' : 'Revolutionary technology meets authentic flavors'}
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                icon: '🔥',
-                title: 'Self-Heating Technology',
-                description: 'Calcium oxide reaction heats your meal in just 5 minutes without any external heat source'
+                icon: Flame,
+                color: 'text-orange-500',
+                bgColor: 'bg-orange-100',
+                title: isArabic ? 'تقنية التسخين الذاتي' : 'Self-Heating Technology',
+                description: isArabic ? 'تفاعل أكسيد الكالسيوم يسخن وجبتك خلال 5 دقائق بدون أي مصدر حرارة خارجي' : 'Calcium oxide reaction heats your meal in just 5 minutes without any external heat source'
               },
               {
-                icon: '🌱',
-                title: 'Plantable Packaging',
-                description: 'Eco-friendly packaging that grows into wildflowers after use, supporting environmental sustainability'
+                icon: Sprout,
+                color: 'text-green-500',
+                bgColor: 'bg-green-100',
+                title: isArabic ? 'تغليف قابل للزراعة' : 'Plantable Packaging',
+                description: isArabic ? 'تغليف صديق للبيئة يتحول إلى زهور برية بعد الاستخدام، يدعم الاستدامة البيئية' : 'Eco-friendly packaging that grows into wildflowers after use, supporting environmental sustainability'
               },
               {
-                icon: '🌍',
-                title: 'Authentic MENA Flavors',
-                description: 'Traditional Middle Eastern and North African recipes with authentic spices and ingredients'
+                icon: Globe,
+                color: 'text-teal-500',
+                bgColor: 'bg-teal-100',
+                title: isArabic ? 'نكهات أصيلة من الشرق الأوسط' : 'Authentic MENA Flavors',
+                description: isArabic ? 'وصفات تقليدية من الشرق الأوسط وشمال أفريقيا بتوابل ومكونات أصيلة' : 'Traditional Middle Eastern and North African recipes with authentic spices and ingredients'
               }
             ].map((feature, index) => (
               <motion.div
@@ -365,7 +372,9 @@ const Shop = () => {
                 viewport={{ once: true }}
                 className="text-center p-6 rounded-xl hover:bg-slate-50 transition-colors duration-300"
               >
-                <div className="text-4xl mb-4">{feature.icon}</div>
+                <div className={`w-16 h-16 mx-auto mb-4 rounded-full ${feature.bgColor} flex items-center justify-center`}>
+                  <feature.icon className={`w-8 h-8 ${feature.color}`} />
+                </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
                 <p className="text-slate-600">{feature.description}</p>
               </motion.div>
@@ -387,7 +396,7 @@ const Shop = () => {
               {isArabic ? 'هل أنت مستعد لاختبار مستقبل الغذاء؟' : 'Ready to Experience the Future of Food?'}
             </h2>
             <p className="text-xl text-teal-100 mb-8 max-w-2xl mx-auto">
-              Join thousands of satisfied customers who have discovered the convenience and taste of self-heating meals
+              {isArabic ? 'انضم إلى آلاف العملاء الراضين الذين اكتشفوا راحة ومذاق الوجبات ذاتية التسخين' : 'Join thousands of satisfied customers who have discovered the convenience and taste of self-heating meals'}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-white text-teal-600 hover:bg-teal-50 px-8 py-3 rounded-lg font-semibold transition-colors">

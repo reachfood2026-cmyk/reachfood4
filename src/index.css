@@ -30,18 +30,18 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(45deg, #eab308, #ca8a04);
+    background: linear-gradient(45deg, #14b8a6, #0d9488);
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(45deg, #ca8a04, #a16207);
+    background: linear-gradient(45deg, #0d9488, #0f766e);
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl relative overflow-hidden;
+    @apply bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl relative overflow-hidden;
   }
 
   .btn-primary::before {
@@ -60,7 +60,7 @@
   }
   
   .btn-secondary {
-    @apply bg-transparent border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 relative overflow-hidden;
+    @apply bg-transparent border-2 border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 relative overflow-hidden;
   }
 
   .btn-secondary::before {
@@ -79,7 +79,7 @@
   }
   
   .card {
-    @apply bg-gradient-to-br from-dark-800/80 to-dark-700/80 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-dark-600/50 hover:border-primary-600/50 transition-all duration-300 relative overflow-hidden;
+    @apply bg-gradient-to-br from-slate-800/80 to-slate-700/80 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-slate-600/50 hover:border-teal-600/50 transition-all duration-300 relative overflow-hidden;
   }
 
   .card::before {
@@ -89,7 +89,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, transparent, rgba(234, 179, 8, 0.05), transparent);
+    background: linear-gradient(45deg, transparent, rgba(20, 184, 166, 0.05), transparent);
     opacity: 0;
     transition: opacity 0.3s;
   }
@@ -99,7 +99,7 @@
   }
   
   .section-title {
-    @apply font-serif text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-white via-primary-100 to-white bg-clip-text text-transparent;
+    @apply font-serif text-4xl md:text-5xl font-bold text-white mb-4 bg-gradient-to-r from-white via-teal-100 to-white bg-clip-text text-transparent;
   }
   
   .section-subtitle {
@@ -107,11 +107,11 @@
   }
   
   .gradient-text {
-    @apply bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 bg-clip-text text-transparent;
   }
   
   .luxury-border {
-    @apply border border-primary-600/20 rounded-xl;
+    @apply border border-teal-600/20 rounded-xl;
   }
 
   /* Glassmorphism effect */
@@ -121,11 +121,11 @@
 
   /* Premium glow effects */
   .glow-primary {
-    box-shadow: 0 0 20px rgba(234, 179, 8, 0.3);
+    box-shadow: 0 0 20px rgba(20, 184, 166, 0.3);
   }
 
   .glow-primary:hover {
-    box-shadow: 0 0 30px rgba(234, 179, 8, 0.5);
+    box-shadow: 0 0 30px rgba(20, 184, 166, 0.5);
   }
 
   /* Floating animation */
@@ -140,11 +140,11 @@
 
   /* Pulse animation */
   @keyframes pulse-glow {
-    0%, 100% { 
-      box-shadow: 0 0 20px rgba(234, 179, 8, 0.3);
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(20, 184, 166, 0.3);
     }
-    50% { 
-      box-shadow: 0 0 30px rgba(234, 179, 8, 0.6);
+    50% {
+      box-shadow: 0 0 30px rgba(20, 184, 166, 0.6);
     }
   }
 
@@ -164,7 +164,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(234, 179, 8, 0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.3), transparent);
     transform: translateX(-100%);
     transition: transform 0.6s;
   }
@@ -175,7 +175,7 @@
 
   /* Premium button states */
   .btn-premium {
-    @apply relative overflow-hidden bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+    @apply relative overflow-hidden bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
   }
 
   .btn-premium::before {
@@ -198,7 +198,7 @@
 
   /* Premium card hover effects */
   .card-premium {
-    @apply relative overflow-hidden bg-gradient-to-br from-dark-800/90 to-dark-700/90 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-dark-600/50 transition-all duration-500;
+    @apply relative overflow-hidden bg-gradient-to-br from-slate-800/90 to-slate-700/90 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-slate-600/50 transition-all duration-500;
   }
 
   .card-premium::before {
@@ -208,7 +208,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(234, 179, 8, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.1), transparent);
     transition: left 0.6s;
   }
 
@@ -217,7 +217,7 @@
   }
 
   .card-premium:hover {
-    @apply border-primary-600/50 transform scale-105 shadow-2xl;
+    @apply border-teal-600/50 transform scale-105 shadow-2xl;
   }
 
   /* Premium loading animation */
@@ -244,25 +244,25 @@
 
   /* Premium text gradient */
   .text-gradient {
-    @apply bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 bg-clip-text text-transparent;
   }
 
   /* Premium border gradient */
   .border-gradient {
     border: 2px solid;
-    border-image: linear-gradient(45deg, #eab308, #ca8a04, #a16207) 1;
+    border-image: linear-gradient(45deg, #14b8a6, #0d9488, #0f766e) 1;
   }
 
   /* Premium shadow effects */
   .shadow-premium {
-    box-shadow: 
+    box-shadow:
       0 10px 30px rgba(0, 0, 0, 0.3),
-      0 0 20px rgba(234, 179, 8, 0.1);
+      0 0 20px rgba(20, 184, 166, 0.1);
   }
 
   .shadow-premium:hover {
-    box-shadow: 
+    box-shadow:
       0 20px 40px rgba(0, 0, 0, 0.4),
-      0 0 30px rgba(234, 179, 8, 0.2);
+      0 0 30px rgba(20, 184, 166, 0.2);
   }
 }
