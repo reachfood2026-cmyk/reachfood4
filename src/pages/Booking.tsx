@@ -632,7 +632,7 @@ export default function Booking() {
                       type="text"
                       value={formData.fullName}
                       onChange={(e) => setFormData(prev => ({ ...prev, fullName: e.target.value }))}
-                      className="w-full px-6 py-4 bg-stone-50 border-2 border-stone-200 rounded-2xl focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all outline-none font-['Manrope']"
+                      className="w-full px-6 py-4 bg-stone-50 border-2 border-stone-200 rounded-2xl focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all outline-none font-['Manrope'] text-stone-900"
                       placeholder={isArabic ? 'أدخل اسمك الكامل' : 'Enter your full name'}
                       required
                     />
@@ -647,7 +647,7 @@ export default function Booking() {
                         type="email"
                         value={formData.email}
                         onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                        className="w-full px-6 py-4 bg-stone-50 border-2 border-stone-200 rounded-2xl focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all outline-none font-['Manrope']"
+                        className="w-full px-6 py-4 bg-stone-50 border-2 border-stone-200 rounded-2xl focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all outline-none font-['Manrope'] text-stone-900"
                         placeholder="you@example.com"
                         required
                       />
@@ -661,7 +661,7 @@ export default function Booking() {
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                        className="w-full px-6 py-4 bg-stone-50 border-2 border-stone-200 rounded-2xl focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all outline-none font-['Manrope']"
+                        className="w-full px-6 py-4 bg-stone-50 border-2 border-stone-200 rounded-2xl focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all outline-none font-['Manrope'] text-stone-900"
                         placeholder="+962 XX XXX XXXX"
                       />
                     </div>
@@ -748,7 +748,7 @@ export default function Booking() {
                       type="text"
                       value={formData.country}
                       onChange={(e) => setFormData(prev => ({ ...prev, country: e.target.value }))}
-                      className="w-full px-6 py-4 bg-stone-50 border-2 border-stone-200 rounded-2xl focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all outline-none font-['Manrope']"
+                      className="w-full px-6 py-4 bg-stone-50 border-2 border-stone-200 rounded-2xl focus:border-teal-500 focus:ring-4 focus:ring-teal-500/20 transition-all outline-none font-['Manrope'] text-stone-900"
                       placeholder={isArabic ? 'أدخل اسم البلد' : 'Enter your country'}
                       required
                     />
