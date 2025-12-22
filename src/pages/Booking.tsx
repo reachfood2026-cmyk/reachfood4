@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Check, Minus, Plus, Package, CreditCard, Sparkles, ShieldCheck } from 'lucide-react'
-import { api } from '../lib/api'
 import type { Product, CreateOrderData, OrderResult } from '../lib/api'
 
 // Generate unique session ID
@@ -11,6 +10,42 @@ const generateSessionId = () => {
   const random = Math.random().toString(36).substring(2, 8)
   return `${timestamp}-${random}`
 }
+
+// Mock Products Data
+const MOCK_PRODUCTS: Product[] = [
+  {
+    id: '1',
+    nameEn: 'Collagen Boost Meal Kit',
+    nameAr: 'وجبة معززة بالكولاجين',
+    descriptionEn: 'Self-heating meal enriched with marine collagen peptides for skin health and joint support',
+    descriptionAr: 'وجبة ذاتية التسخين غنية ببتيدات الكولاجين البحري لصحة البشرة ودعم المفاصل',
+    price: 24.99,
+    originalPrice: 29.99,
+    category: 'wellness',
+    badgeEn: 'Best Seller',
+    badgeAr: 'الأكثر مبيعاً',
+    featuresEn: ['5000mg Marine Collagen', 'Self-heating in 5 min', 'Plantable packaging'],
+    featuresAr: ['5000 ملغ كولاجين بحري', 'تسخين ذاتي في 5 دقائق', 'تغليف قابل للزراعة'],
+    isFeatured: true,
+    isActive: true
+  },
+  {
+    id: '2',
+    nameEn: 'High Protein Power Meal',
+    nameAr: 'وجبة البروتين العالي',
+    descriptionEn: 'Nutrient-dense meal with 35g of protein for active lifestyles and muscle recovery',
+    descriptionAr: 'وجبة غنية بالمغذيات تحتوي على 35 جرام من البروتين لأسلوب حياة نشط واستعادة العضلات',
+    price: 22.99,
+    originalPrice: 27.99,
+    category: 'fitness',
+    badgeEn: 'High Protein',
+    badgeAr: 'بروتين عالي',
+    featuresEn: ['35g Protein', 'Low carb', 'Ready in 5 min'],
+    featuresAr: ['35 جرام بروتين', 'منخفض الكربوهيدرات', 'جاهز في 5 دقائق'],
+    isFeatured: true,
+    isActive: true
+  }
+]
 
 // Product image mapping
 const getProductImage = (productName: string): string => {
@@ -45,46 +80,23 @@ export default function Booking() {
     country: ''
   })
 
-  // Load products on mount
+  // Load products on mount (using mock data)
   useEffect(() => {
-    async function loadProducts() {
-      try {
-        const prods = await api.getProducts()
-        setProducts(prods)
-        await api.trackCheckoutSession({
-          sessionId,
-          currentStep: 0,
-          cartState: {}
-        })
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load products')
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    loadProducts()
-  }, [sessionId])
+    // Simulate API loading delay
+    setTimeout(() => {
+      setProducts(MOCK_PRODUCTS)
+      setIsLoading(false)
+    }, 500)
+  }, [])
 
-  // Track abandonment
+  // Track abandonment (disabled for mock)
   useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.hidden && step < 3) {
-        api.trackCheckoutAbandonment(sessionId, step).catch(() => {})
-      }
-    }
-    document.addEventListener('visibilitychange', handleVisibilityChange)
-    return () => document.removeEventListener('visibilitychange', handleVisibilityChange)
+    // Mock: tracking disabled
   }, [sessionId, step])
 
-  // Track cart changes
+  // Track cart changes (disabled for mock)
   useEffect(() => {
-    if (step === 0 && Object.keys(cart).length > 0) {
-      api.trackCheckoutSession({
-        sessionId,
-        currentStep: 0,
-        cartState: cart
-      }).catch(() => {})
-    }
+    // Mock: tracking disabled
   }, [cart, sessionId, step])
 
   // Calculate totals
@@ -121,11 +133,7 @@ export default function Booking() {
     }
     setError(null)
     setStep(1)
-    await api.trackCheckoutSession({
-      sessionId,
-      currentStep: 1,
-      cartState: cart
-    })
+    // Mock: tracking disabled
   }
 
   const handleContinueToCheckout = async () => {
@@ -135,12 +143,7 @@ export default function Booking() {
     }
     setError(null)
     setStep(2)
-    await api.trackCheckoutSession({
-      sessionId,
-      currentStep: 2,
-      cartState: cart,
-      personalInfo: formData
-    })
+    // Mock: tracking disabled
   }
 
   const handlePlaceOrder = async (e: React.FormEvent) => {
@@ -154,31 +157,22 @@ export default function Booking() {
     setError(null)
 
     try {
-      const nameParts = formData.fullName.trim().split(' ')
-      const firstName = nameParts[0] || ''
-      const lastName = nameParts.slice(1).join(' ') || firstName
+      // Mock order creation - simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 1500))
 
-      const orderData: CreateOrderData = {
-        customer: {
-          email: formData.email,
-          firstName,
-          lastName,
-          phone: formData.phone || undefined,
-          country: formData.country
-        },
-        orderType: 'one-time',
-        items: Object.values(cart).map(({ product, quantity }) => ({
-          productId: product.id,
-          quantity
-        })),
-        shippingAddress: { country: formData.country },
+      // Generate mock order number
+      const orderNumber = `RF${Date.now().toString().slice(-8)}`
+
+      // Create mock order result
+      const mockResult: OrderResult = {
+        orderNumber,
+        total: Number(total.toFixed(2)),
+        status: 'pending',
         paymentMethod: 'cod',
-        sessionId
+        paymentStatus: 'pending'
       }
 
-      const result = await api.createOrder(orderData)
-      await api.completeCheckoutSession(sessionId, result.orderNumber)
-      setOrderResult(result)
+      setOrderResult(mockResult)
       setStep(3)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to place order')
