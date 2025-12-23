@@ -15,20 +15,31 @@ import Investment from './pages/Investment'
 import Contact from './pages/Contact'
 
 function AppContent() {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(() => {
+    // Check if user has already seen the loading screen in this session
+    const hasSeenIntro = sessionStorage.getItem('hasSeenIntro')
+    return !hasSeenIntro
+  })
   const location = useLocation()
 
   useEffect(() => {
-    // Simulate loading time for premium experience
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 3000)
+    // Only show loading intro if user hasn't seen it this session
+    if (isLoading) {
+      // Simulate loading time for premium experience
+      const timer = setTimeout(() => {
+        setIsLoading(false)
+        // Mark that user has seen the intro in this session
+        sessionStorage.setItem('hasSeenIntro', 'true')
+      }, 3000)
 
-    return () => clearTimeout(timer)
-  }, [])
+      return () => clearTimeout(timer)
+    }
+  }, [isLoading])
 
   const handleLoadingComplete = () => {
     setIsLoading(false)
+    // Mark that user has seen the intro in this session
+    sessionStorage.setItem('hasSeenIntro', 'true')
   }
 
   // Set document direction and language based on current locale
@@ -38,8 +49,17 @@ function AppContent() {
     document.documentElement.lang = isArabic ? 'ar' : 'en'
   }, [location.pathname])
 
+  // Track page views in GA4 on route change
+  useEffect(() => {
+    if (typeof window.gtag === 'function') {
+      window.gtag('config', 'G-HH9GS53J62', {
+        page_path: location.pathname + location.search
+      })
+    }
+  }, [location])
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-teal-900 to-slate-900">
+    <div className="min-h-screen bg-cream">
       {/* Premium Loading Screen */}
       <AnimatePresence>
         {isLoading && (
@@ -61,231 +81,231 @@ function AppContent() {
             <Navbar />
             <Routes>
               {/* Default locale routes (EN) */}
-              <Route 
-                path="/" 
+              <Route
+                path="/"
                 element={
                   <motion.div
                     key="home"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Home />
                   </motion.div>
-                } 
+                }
               />
-              <Route 
-                path="/services" 
+              <Route
+                path="/services"
                 element={
                   <motion.div
                     key="services"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.5 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Services />
                   </motion.div>
-                } 
+                }
               />
-              <Route 
-                path="/portfolio" 
+              <Route
+                path="/portfolio"
                 element={
                   <motion.div
                     key="portfolio"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.5 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Portfolio />
                   </motion.div>
-                } 
+                }
               />
-              <Route 
-                path="/booking" 
+              <Route
+                path="/booking"
                 element={
                   <motion.div
                     key="booking"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.05 }}
-                    transition={{ duration: 0.5 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Booking />
                   </motion.div>
-                } 
+                }
               />
-              <Route 
-                path="/about" 
+              <Route
+                path="/about"
                 element={
                   <motion.div
                     key="about"
-                    initial={{ opacity: 0, rotateY: 15 }}
-                    animate={{ opacity: 1, rotateY: 0 }}
-                    exit={{ opacity: 0, rotateY: -15 }}
-                    transition={{ duration: 0.5 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <About />
                   </motion.div>
-                } 
+                }
               />
-              <Route 
-                path="/shop" 
+              <Route
+                path="/shop"
                 element={
                   <motion.div
                     key="shop"
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -30 }}
-                    transition={{ duration: 0.5 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Shop />
                   </motion.div>
-                } 
+                }
               />
-              <Route 
-                path="/investment" 
+              <Route
+                path="/investment"
                 element={
                   <motion.div
                     key="investment"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.05 }}
-                    transition={{ duration: 0.5 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Investment />
                   </motion.div>
-                } 
+                }
               />
-              <Route 
-                path="/contact" 
+              <Route
+                path="/contact"
                 element={
                   <motion.div
                     key="contact"
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 30 }}
-                    transition={{ duration: 0.5 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Contact />
                   </motion.div>
-                } 
+                }
               />
 
               {/* Arabic locale routes (AR) */}
-              <Route 
-                path="/ar" 
+              <Route
+                path="/ar"
                 element={
                   <motion.div
                     key="home-ar"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Home />
                   </motion.div>
-                } 
+                }
               />
-              <Route 
-                path="/ar/services" 
+              <Route
+                path="/ar/services"
                 element={
                   <motion.div
                     key="services-ar"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.5 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Services />
                   </motion.div>
-                } 
+                }
               />
-              <Route 
-                path="/ar/portfolio" 
+              <Route
+                path="/ar/portfolio"
                 element={
                   <motion.div
                     key="portfolio-ar"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.5 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Portfolio />
                   </motion.div>
-                } 
+                }
               />
-              <Route 
-                path="/ar/booking" 
+              <Route
+                path="/ar/booking"
                 element={
                   <motion.div
                     key="booking-ar"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.05 }}
-                    transition={{ duration: 0.5 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Booking />
                   </motion.div>
-                } 
+                }
               />
-              <Route 
-                path="/ar/about" 
+              <Route
+                path="/ar/about"
                 element={
                   <motion.div
                     key="about-ar"
-                    initial={{ opacity: 0, rotateY: 15 }}
-                    animate={{ opacity: 1, rotateY: 0 }}
-                    exit={{ opacity: 0, rotateY: -15 }}
-                    transition={{ duration: 0.5 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <About />
                   </motion.div>
-                } 
+                }
               />
-              <Route 
-                path="/ar/shop" 
+              <Route
+                path="/ar/shop"
                 element={
                   <motion.div
                     key="shop-ar"
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -30 }}
-                    transition={{ duration: 0.5 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Shop />
                   </motion.div>
-                } 
+                }
               />
-              <Route 
-                path="/ar/investment" 
+              <Route
+                path="/ar/investment"
                 element={
                   <motion.div
                     key="investment-ar"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.05 }}
-                    transition={{ duration: 0.5 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Investment />
                   </motion.div>
-                } 
+                }
               />
-              <Route 
-                path="/ar/contact" 
+              <Route
+                path="/ar/contact"
                 element={
                   <motion.div
                     key="contact-ar"
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 30 }}
-                    transition={{ duration: 0.5 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Contact />
                   </motion.div>
-                } 
+                }
               />
             </Routes>
             <Footer />
@@ -295,7 +315,7 @@ function AppContent() {
               href="https://wa.me/962792977610"
               target="_blank"
               rel="noopener noreferrer"
-              className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+              className="fixed bottom-6 right-6 z-50 bg-sage hover:bg-sage-light text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, scale: 0 }}
