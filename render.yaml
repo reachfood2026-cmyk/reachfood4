@@ -16,7 +16,7 @@ services:
     plan: free # Free tier: 750 hours/month, spins down after inactivity
     # plan: starter # $7/month for always-on
     rootDir: server
-    buildCommand: npm install --include=dev && npm run build && npx prisma migrate deploy
+    buildCommand: npm install --include=dev && npm run build && npx prisma migrate deploy && npm run db:seed
     startCommand: npm start
     envVars:
       - key: NODE_ENV
