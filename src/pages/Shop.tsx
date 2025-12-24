@@ -2,7 +2,8 @@ import { motion } from 'framer-motion'
 import { useLocation, Link } from 'react-router-dom'
 import { Flame, Sprout, Globe, Loader2 } from 'lucide-react'
 import { useState, useEffect } from 'react'
-import { api, Product, SubscriptionPlan } from '../lib/api'
+import { api } from '../lib/api'
+import type { Product, SubscriptionPlan } from '../lib/api'
 
 const Shop = () => {
   const location = useLocation()
