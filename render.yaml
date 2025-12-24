@@ -16,8 +16,8 @@ services:
     plan: free # Free tier: 750 hours/month, spins down after inactivity
     # plan: starter # $7/month for always-on
     rootDir: server
-    buildCommand: npm install && npx prisma generate
-    startCommand: npm run build && npm start
+    buildCommand: npm install && npm run build && npx prisma migrate deploy
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
@@ -29,6 +29,8 @@ services:
         generateValue: true
       - key: JWT_REFRESH_SECRET
         generateValue: true
+      - key: ALLOWED_ORIGINS
+        sync: false # Set manually: https://reachfood.com,https://reachfood-admin.onrender.com
       - key: ADMIN_EMAIL
         value: admin@reachfood.com
       - key: ADMIN_PASSWORD

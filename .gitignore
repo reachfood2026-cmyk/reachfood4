@@ -31,3 +31,10 @@ admin/.env
 *.sw?
 
 .vercel
+
+# Backup folders
+MIGRATION_BACKUP/
+
+# Windows reserved names
+nul
+NUL
