@@ -41,7 +41,7 @@ async function main() {
       category: 'Wellness',
       badgeEn: 'Health Focused',
       badgeAr: 'صحي',
-      imageUrl: '/images/re-collagen.jpg',
+      imageUrl: '/images/prod7.jpg',
       featuresEn: ['Self-heating technology', 'Authentic MENA flavors', 'High nutrition', 'Halal certified', 'Plantable packaging'],
       featuresAr: ['تقنية التسخين الذاتي', 'نكهات الشرق الأوسط الأصيلة', 'قيمة غذائية عالية', 'حلال معتمد', 'تغليف قابل للزراعة'],
       isFeatured: true,
@@ -56,7 +56,7 @@ async function main() {
       category: 'Gourmet',
       badgeEn: 'Gourmet Choice',
       badgeAr: 'اختيار الذواقة',
-      imageUrl: '/images/re-protein.jpg',
+      imageUrl: '/images/icons/3dzz.jpg',
       featuresEn: ['Gourmet variety', 'Traditional cooking', 'Premium ingredients', 'Cultural authenticity', 'Instant preparation'],
       featuresAr: ['تنوع فاخر', 'طهي تقليدي', 'مكونات مميزة', 'أصالة ثقافية', 'تحضير فوري'],
       isFeatured: true,
@@ -72,6 +72,12 @@ async function main() {
     if (!existing) {
       await prisma.product.create({ data: product });
       console.log(`Created product: ${product.nameEn}`);
+    } else {
+      await prisma.product.update({
+        where: { id: existing.id },
+        data: product,
+      });
+      console.log(`Updated product: ${product.nameEn}`);
     }
   }
 
@@ -139,6 +145,12 @@ async function main() {
     if (!existing) {
       await prisma.subscriptionPlan.create({ data: plan });
       console.log(`Created subscription plan: ${plan.nameEn}`);
+    } else {
+      await prisma.subscriptionPlan.update({
+        where: { id: existing.id },
+        data: plan,
+      });
+      console.log(`Updated subscription plan: ${plan.nameEn}`);
     }
   }
 
