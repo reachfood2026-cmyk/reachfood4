@@ -1,7 +1,7 @@
 import prisma from '../config/database.js';
 import { PaginationParams, PaginatedResponse } from '../types/index.js';
 import { AppError } from '../middleware/error.middleware.js';
-import { Order, Prisma } from '@prisma/client';
+import { Order, Prisma, OrderStatus, PaymentStatus, PaymentMethod, DeliveryStatus } from '@prisma/client';
 
 function generateOrderNumber(): string {
   const timestamp = Date.now().toString(36).toUpperCase();
@@ -16,7 +16,7 @@ export const ordersService = {
     const { page = 1, limit = 10, sortBy = 'createdAt', sortOrder = 'desc', status, orderType, customerId } = params;
 
     const where: Prisma.OrderWhereInput = {};
-    if (status) where.status = status;
+    if (status) where.status = status as OrderStatus;
     if (orderType) where.orderType = orderType;
     if (customerId) where.customerId = customerId;
 
@@ -112,6 +112,9 @@ export const ordersService = {
       lastName: string;
       phone?: string;
       address?: string;
+      city?: string;
+      country?: string;
+      gender?: string;
     };
     orderType: 'one-time' | 'subscription';
     items: Array<{
@@ -123,6 +126,8 @@ export const ordersService = {
     specialNotes?: string;
     deliveryFrequency?: string;
     shippingAddress?: Record<string, unknown>;
+    paymentMethod?: 'cod';
+    sessionId?: string;
   }) {
     // Find or create customer
     let customer = await prisma.customer.findUnique({
@@ -137,7 +142,24 @@ export const ordersService = {
           lastName: data.customer.lastName,
           phone: data.customer.phone,
           address: data.customer.address,
+          city: data.customer.city,
+          country: data.customer.country,
+          gender: data.customer.gender,
           isGuest: true,
+        },
+      });
+    } else {
+      // Update existing customer with new info including gender
+      customer = await prisma.customer.update({
+        where: { email: data.customer.email },
+        data: {
+          firstName: data.customer.firstName,
+          lastName: data.customer.lastName,
+          phone: data.customer.phone,
+          address: data.customer.address,
+          city: data.customer.city,
+          country: data.customer.country,
+          gender: data.customer.gender,
         },
       });
     }
@@ -193,11 +215,13 @@ export const ordersService = {
         orderNumber: generateOrderNumber(),
         customerId: customer.id,
         orderType: data.orderType,
+        paymentMethod: data.paymentMethod === 'cod' ? PaymentMethod.cod : PaymentMethod.cod,
+        paymentStatus: PaymentStatus.pending,
         subtotal,
         shippingCost,
         tax,
         total,
-        shippingAddress: data.shippingAddress || null,
+        shippingAddress: data.shippingAddress ? (data.shippingAddress as Prisma.InputJsonValue) : Prisma.JsonNull,
         dietaryPrefs: data.dietaryPreferences || [],
         specialNotes: data.specialNotes,
         deliveryFreq: data.deliveryFrequency,
@@ -206,8 +230,8 @@ export const ordersService = {
         },
         tracking: {
           create: {
-            status: 'Order placed',
-            notes: 'Your order has been received',
+            status: DeliveryStatus.pending,
+            notes: 'Your order has been received. Payment: Cash on Delivery',
           },
         },
       },
@@ -232,12 +256,23 @@ export const ordersService = {
       throw new AppError('Order not found', 404);
     }
 
-    const updateData: Prisma.OrderUpdateInput = { status };
+    const orderStatus = status as OrderStatus;
+    const updateData: Prisma.OrderUpdateInput = { status: orderStatus };
 
     // Set timestamps based on status
     if (status === 'paid') updateData.paidAt = new Date();
     if (status === 'shipped') updateData.shippedAt = new Date();
     if (status === 'delivered') updateData.deliveredAt = new Date();
+
+    // Map order status to delivery status
+    const deliveryStatusMap: Record<string, DeliveryStatus> = {
+      pending: DeliveryStatus.pending,
+      confirmed: DeliveryStatus.pending,
+      processing: DeliveryStatus.pending,
+      shipped: DeliveryStatus.in_transit,
+      delivered: DeliveryStatus.delivered,
+      cancelled: DeliveryStatus.failed,
+    };
 
     const [order] = await Promise.all([
       prisma.order.update({
@@ -252,7 +287,7 @@ export const ordersService = {
       prisma.deliveryTracking.create({
         data: {
           orderId: id,
-          status,
+          status: deliveryStatusMap[status] || DeliveryStatus.pending,
           notes,
         },
       }),
@@ -270,7 +305,7 @@ export const ordersService = {
     return prisma.deliveryTracking.create({
       data: {
         orderId,
-        status: data.status,
+        status: data.status as DeliveryStatus,
         location: data.location,
         notes: data.notes,
       },

@@ -4,6 +4,7 @@ import prisma from '../config/database.js';
 import { authConfig } from '../config/auth.js';
 import { TokenPayload } from '../types/index.js';
 import { AppError } from '../middleware/error.middleware.js';
+import { AdminRole } from '@prisma/client';
 
 export const authService = {
   async login(email: string, password: string) {
@@ -42,7 +43,7 @@ export const authService = {
     };
   },
 
-  generateAccessToken(admin: { id: string; email: string; role: string }) {
+  generateAccessToken(admin: { id: string; email: string; role: AdminRole }) {
     const payload: TokenPayload = {
       userId: admin.id,
       email: admin.email,
@@ -51,11 +52,11 @@ export const authService = {
     };
 
     return jwt.sign(payload, authConfig.accessTokenSecret, {
-      expiresIn: authConfig.accessTokenExpiry,
-    });
+      expiresIn: authConfig.accessTokenExpiry as string,
+    } as jwt.SignOptions);
   },
 
-  generateRefreshToken(admin: { id: string; email: string; role: string }) {
+  generateRefreshToken(admin: { id: string; email: string; role: AdminRole }) {
     const payload: TokenPayload = {
       userId: admin.id,
       email: admin.email,
@@ -64,8 +65,8 @@ export const authService = {
     };
 
     return jwt.sign(payload, authConfig.refreshTokenSecret, {
-      expiresIn: authConfig.refreshTokenExpiry,
-    });
+      expiresIn: authConfig.refreshTokenExpiry as string,
+    } as jwt.SignOptions);
   },
 
   async refreshAccessToken(refreshToken: string) {
@@ -148,7 +149,7 @@ export const authService = {
     password: string;
     firstName: string;
     lastName: string;
-    role?: string;
+    role?: AdminRole;
   }) {
     const existing = await prisma.adminUser.findUnique({
       where: { email: data.email },
@@ -166,7 +167,7 @@ export const authService = {
         passwordHash,
         firstName: data.firstName,
         lastName: data.lastName,
-        role: data.role || 'admin',
+        role: data.role || AdminRole.admin,
       },
       select: {
         id: true,
